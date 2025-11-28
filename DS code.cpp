@@ -1,8 +1,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
-// Passenger Node for Linked List
 struct Passenger {
     int seatNo;
     string name;
@@ -10,21 +8,16 @@ struct Passenger {
     char gender;
     Passenger* next;
 };
-
-// Global variables
 int totalSeats = 30;
-int* seats; // Dynamic array for seat status
-Passenger* head = NULL; // Linked list head pointer
-
-// Function to book a ticket
+int* seats; 
+Passenger* head = NULL;
 void bookTicket() {
     int seatNo = -1;
 
-    // Find first available seat
     for (int i = 0; i < totalSeats; i++) {
         if (seats[i] == 0) {
-            seatNo = i + 1; // Seat numbers start from 1
-            seats[i] = 1;   // Mark as booked
+            seatNo = i + 1; 
+            seats[i] = 1;   
             break;
         }
     }
@@ -34,7 +27,6 @@ void bookTicket() {
         return;
     }
 
-    // Take passenger details
     Passenger* newPassenger = new Passenger;
     newPassenger->seatNo = seatNo;
     cout << "Enter Name: ";
@@ -45,7 +37,7 @@ void bookTicket() {
     cin >> newPassenger->gender;
     newPassenger->next = NULL;
 
-    // Insert passenger at end of linked list
+    
     if (head == NULL) {
         head = newPassenger;
     } else {
@@ -58,8 +50,6 @@ void bookTicket() {
 
     cout << "Ticket booked successfully! Seat No: " << seatNo << endl;
 }
-
-// Function to cancel ticket
 void cancelTicket() {
     int seatNo;
     cout << "Enter seat number to cancel: ";
@@ -70,10 +60,10 @@ void cancelTicket() {
         return;
     }
 
-    // Mark seat as available
+
     seats[seatNo - 1] = 0;
 
-    // Remove passenger from linked list
+    
     Passenger* temp = head;
     Passenger* prev = NULL;
 
@@ -97,7 +87,7 @@ void cancelTicket() {
     cout << "Ticket for Seat No " << seatNo << " has been cancelled.\n";
 }
 
-// Function to view train status
+
 void viewTrainStatus() {
     cout << "\nTrain Seat Status:\n";
     for (int i = 0; i < totalSeats; i++) {
@@ -106,7 +96,7 @@ void viewTrainStatus() {
     }
 }
 
-// Function to view passenger list
+
 void viewPassengerList() {
     if (head == NULL) {
         cout << "No passengers found.\n";
@@ -124,7 +114,7 @@ void viewPassengerList() {
     }
 }
 
-// Free all allocated memory before exit
+
 void freeMemory() {
     delete[] seats;
     Passenger* temp;
@@ -136,9 +126,9 @@ void freeMemory() {
 }
 
 int main() {
-    seats = new int[totalSeats]; // Allocate dynamic array
+    seats = new int[totalSeats]; 
     for (int i = 0; i < totalSeats; i++) {
-        seats[i] = 0; // Initialize all seats as available
+        seats[i] = 0; 
     }
 
     int choice;
@@ -165,3 +155,4 @@ int main() {
 
     return 0;
 }
+
